@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2Ver2</title>
+    <script src="https://kit.fontawesome.com/e5a7d2c98b.js" crossorigin="anonymous"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <body>
+    <%= render 'layouts/header' %>
+      <main>
+        <p id="notice"><%= notice %></p>
+        <%#= form_with model: @user, url: user_registration_path do |f| %>
+          <%= yield %>
+        <%# end %>
+      </main>
+    <%= render 'layouts/footer' %>
+  </body>
+  
+</html>
