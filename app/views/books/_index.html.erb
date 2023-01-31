@@ -12,7 +12,7 @@
       <tr>
         <td><%= link_to(book.user) do %>
           <%#= image_tag book.user.get_profile_image(80,80) %>
-          <%= image_tag user.get_profile_image(80,80) %><!--投稿したユーザーと紐づくアイコン-->
+          <%= image_tag book.user.get_profile_image(80,80) %><!--投稿したユーザーと紐づくアイコン-->
           <% end %>
         </td>
         <td><%= link_to book.title,book %></td>
