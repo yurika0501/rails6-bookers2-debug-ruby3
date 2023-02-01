@@ -12,7 +12,7 @@
   		<table class='table'>
   		  <tr>
           <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image(100,100) %><br>
+            <%= image_tag @book.user.get_profile_image(50,50) %><br>
             <%= @book.user.name %>
             <% end %>
           </td>
@@ -26,10 +26,42 @@
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
           <% end %>
           <% if @book.user == current_user %>
-            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
           <% end %>
         </tr>
       </table>
+      <!--コメント機能-->
+      <!--<div class='col-md-8 offset-md-1'>-->
+      
+      <% @book.post_comments.each do |post_comment| %>
+      <!--<div class="form-group">-->
+        <table class='table'>
+          <tr>
+            <td>
+            <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+            <%= link_to(@book.user) do %>
+              <%= post_comment.user.name %>
+            <% end %>
+            </td>
+            <td>
+            <%= post_comment.comment %>
+            </td>
+            <td>
+            <% if post_comment.user == current_user %>
+              <%= link_to 'Destroy', book_post_comment_path(post_comment.book, post_comment), method: :delete, class: "btn btn-sm btn-danger" %>
+            <% end %>
+            </td>
+          </tr>
+        </table>
+      <!--</div>-->
+      <% end %>
+      <!--<div class="form-group">-->
+          <%= form_with model: [@book, @post_comment] do |f| %>
+            <%= f.text_area :comment, class: 'form-control book_body' %><br>
+            <%= f.submit "送信" %>
+          <% end %>
+      <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </div>
