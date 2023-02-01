@@ -18,6 +18,9 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          <td><!--いいね機能-->
+            <%= render 'favorites/fav', books: @books, book: @book %>
+          </td>
           
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
