@@ -12,11 +12,28 @@
       <tr>
         <td><%= link_to(book.user) do %>
           <%#= image_tag book.user.get_profile_image(80,80) %>
-          <%= image_tag book.user.get_profile_image(80,80) %><!--投稿したユーザーと紐づくアイコン-->
+          <%= image_tag book.user.get_profile_image(50,50) %><!--投稿したユーザーと紐づくアイコン-->
           <% end %>
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
+        <td>
+          <!--いいね機能-->
+        <% if book.favorited_by?(current_user) %>
+            <p>
+            <%= link_to book_favorites_path(book), method: :delete do %>
+              ♥<%= book.favorites.count %>
+            <% end %>
+            </p>
+            <% else %>
+            <p>
+            <%= link_to book_favorites_path(book), method: :post do %>
+              ♡<%= book.favorites.count %>
+            <% end %>
+            </p>
+        <% end %>
+
+        </td>
       </tr>
     <% end %>
   </tbody>
