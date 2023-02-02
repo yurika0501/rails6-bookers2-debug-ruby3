@@ -11,7 +11,19 @@ class UsersController < ApplicationController
     # @user = User.find(params[:id])
     @users = User.all
     @book = Book.new
+    @users2 = User.where.not(id: current_user.id)#カレントユーザー以外のidをとってくる
   end
+  
+  def followings
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user =User.find(params[:id])
+    @users = user.followers
+  end
+
 
   def edit
     @user = User.find(params[:id])

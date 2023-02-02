@@ -27,4 +27,10 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [w, h]).processed
   end
+  
+  # ユーザーにフォローされているか否かを判定するメソッド
+  def is_followed_by?(user)
+    reverse_of_relationships.find_by(following_id: user.id).present?
+  end
+  
 end
