@@ -1,23 +1,34 @@
 <!--フォロイー一覧-->
-<h2>Follow Users</h2>
-<table class='table'>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.get_profile_image(50,50) %></td>
-        <td><%= user.name %></td>
-        <td>フォロー数:<%= link_to user.followings.count, followings_user_path(user) %></td>
-        <td>フォロワー数:<%= link_to user.followers.count, followers_user_path(user) %></td>
-        <td><%= link_to 'Show', user %></td>
-      </tr>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
 
-    <% end %>
-  </tbody>
-</table>
+    <h2>Follow Users</h2>
+    <table class='table'>
+      
+      <tbody>
+        <% if @users.empty? %>
+         <td>ユーザーはいません</td>
+
+        <% else%>
+            <% @users.each do |user| %>
+            <thead>
+              <tr>
+                <th>image</th>
+                <th>name</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+              <tr>
+                <td><%= image_tag user.get_profile_image(50,50) %></td>
+                <td><%= user.name %></td>
+                <td>フォロー数:<%= link_to user.followings.count, followings_user_path(user) %></td>
+                <td>フォロワー数:<%= link_to user.followers.count, followers_user_path(user) %></td>
+                <td><%= link_to 'Show', user %></td>
+              </tr>
+        
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
