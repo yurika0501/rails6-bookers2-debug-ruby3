@@ -1,2 +1,3 @@
-$("#post_comment").val("");
-$('.text_area').html("<%= j(render 'comment', book: @book) %>")
+$('#post-comments').html("<%= j(render "post_comments/comment", book: @book) %>");
+$('#comment_count').html("<%= @book.post_comments.count %>")
+$("textarea").val('');<!--投稿後は、フォームをカラにしたいのでこの記述が必要-->
