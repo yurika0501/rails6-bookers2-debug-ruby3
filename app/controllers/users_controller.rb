@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @yesterday_book = @books.created_yesterday
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_last_week
+    #投稿数グラフ出力　gem groupdateをインストールしないと下記の記述は使用不可
+    @books_count = Book.group_by_day_of_week(:created_at).size
+    #投稿数グラフ出力　gem groupdateをインストールしないと下記の記述は使用不可
+    @book_today = Book.where(created_at: Date.today.all_day).count
   end
 
   def index
