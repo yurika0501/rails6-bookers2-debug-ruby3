@@ -17,9 +17,13 @@ import "jquery"
 import "popper.js"
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
-import "../stylesheets/application" 
-import "chartkick/chart.js"
+import "../stylesheets/application"
+import Chart from 'chart.js/auto';
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+global.$ = jQuery;
+window.$ = jQuery;
+global.Chart = Chart;
