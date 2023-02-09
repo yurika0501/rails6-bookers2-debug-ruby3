@@ -46,15 +46,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def book_search
-    @user = User.find(params[:user_id])
-    @books = @user.books
-    @book = Book.new
-    if params[:created_at] == ""
-      @search_book = "日付を選択してください"#if文で分岐させて空欄なら日付選択を表示
+  def search
+    user_books = User.find(params[:user_id]).books #user_idで取得したユーザの本の一覧を取得
+    created_time = params[:created_at] #created_atをcreated_timeに代入
+    if created_time == "" 
+      @search_book = "日付が選択されていません"
     else
-      create_at = params[:created_at]
-      @search_book = @books.where(['created_at LIKE ? ', "#{create_at}%"]).count #.countメソッドで検索してヒットした本を投稿した日付の投稿数を@search_bookで定義
+      @search_book = user_books.where(created_at: created_time.to_date.all_day).count 
     end
   end
 

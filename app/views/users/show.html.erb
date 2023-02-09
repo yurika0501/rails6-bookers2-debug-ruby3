@@ -137,7 +137,7 @@
           
           <div id="search_result"><!--jsファイルを呼び出し-->
             <% if @search_book.present? %>
-              <%= render 'book_search', search_book: @search_book %><!--検索結果の部分テンプレ呼び出し-->
+              <%= render 'search', search_book: @search_book %><!--検索結果の部分テンプレ呼び出し-->
             <% end %>
           </div>
     </div>
